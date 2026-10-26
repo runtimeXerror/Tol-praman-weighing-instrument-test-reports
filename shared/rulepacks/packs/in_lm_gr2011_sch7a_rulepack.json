@@ -1,0 +1,170 @@
+{
+  "$schema": "../rulepack.schema.json",
+  "id": "IN_LM_GR2011_SCH7A",
+  "profile": "IN",
+  "version": "2026.07.03.3",
+  "title": "Legal Metrology (General) Rules, 2011 - Seventh Schedule, Heading A (Non-automatic weighing instruments), as amended up to G.S.R. 568(E) dt. 03-07-2026",
+  "extends": "OIML_R76",
+  "source": {
+    "documents": [
+      { "ref": "G.S.R. 71(E) dt. 07-02-2011 (LM General Rules 2011), Seventh Schedule Heading A", "file": "docs/standards/india/LM_General_Rules_2011.pdf", "url": "https://consumeraffairs.gov.in/public/upload/files/6_0_1732709495.pdf", "ocr": "docs/standards/india/HeadingA_NAWI_OCR.txt" },
+      { "ref": "G.S.R. 568(E) dt. 03-07-2026 (LM General Fourth Amendment Rules 2026) - Heading A Pt II 9(2)(ii) substitution", "file": "docs/standards/india/LM_General_4th_Amendment_2026_NAWI_Fees.pdf", "url": "https://consumeraffairs.gov.in/public/upload/files/Gen_Rules_4th_Amendment_NAWI_Fees_1783336378.pdf" },
+      { "ref": "Dataset link in PS SIH26035", "url": "https://consumeraffairs.gov.in/pages/legal-metrology-act" }
+    ],
+    "clause_prefix": "Hdg A"
+  },
+
+  "overrides": {
+    "differences_from_base": [
+      { "topic": "Creep and return to zero: classes", "base": "Classes II, III, IIII (R76-1 3.9.4)", "profile": "Classes I, II, III (TODO-VERIFY with RRSL)", "clause": "Hdg A Pt II 3(9)(iv)" },
+      { "topic": "Tilting: amount of tilt", "base": "Limiting value of the level indicator; 50/1000 when there is no level indicator or tilt sensor (R76-1 3.9.1.1)", "profile": "2/1000 or the level-indicator limit, whichever is greater; 5 % when there is no level indicator", "clause": "Hdg A Pt II 3(9)(i)" },
+      { "topic": "Tilting at no load, class II", "base": "2 e limit applies to class II used for direct sales (R76-2 form 8)", "profile": "2 e limit does not apply to class II", "clause": "Hdg A Pt II 3(9)(i)" },
+      { "topic": "Power supply variations", "base": "Voltage 0.85 to 1.10 Unom (R76-1 3.9.3)", "profile": "Voltage -15 % / +10 % and frequency -2 % / +2 %", "clause": "Hdg A Pt II 3(9)(iii)" },
+      { "topic": "Discrimination, digital", "base": "Only for d >= 5 mg (R76-1 3.8)", "profile": "For every d", "clause": "Hdg A Pt II 3(8)(ii)(b)" },
+      { "topic": "Discrimination, non-self-indicating", "base": "Extra load 0.4 |mpe| (R76-1 3.8)", "profile": "Extra load 1.0 |mpe|", "clause": "Hdg A Pt II 3(8)(i)" },
+      { "topic": "Minimum capacity of grading instruments", "base": "5 e (R76-1 Table 3)", "profile": "Not provided", "clause": "-" },
+      { "topic": "Substitution material for large capacities", "base": "Not specified", "profile": "Standard weights >= 50 % of Max; 1/3 of Max if repeatability <= 0.3 e, 1/5 if <= 0.2 e", "clause": "Hdg A Pt II 9(2)(ii) (G.S.R. 568(E) dt. 03-07-2026)" },
+      { "topic": "Zero-setting range", "base": "Class IIII exempt unless used for commercial transactions; initial range > 20 % allowed with a supplementary weighing test (R76-1 4.5.1, A.4.4.2)", "profile": "4 % and 20 % limits for every class; no wider initial range", "clause": "Hdg A Pt II 4 (zero-setting devices: Maximum effect)" },
+      { "topic": "Zero-setting accuracy with an auxiliary indicating device", "base": "0.25 e (R76-1 4.5.2)", "profile": "0.5 d", "clause": "Hdg A Pt II 4 (zero-setting devices: Accuracy)" },
+      { "topic": "Static temperatures", "base": "5 C test when the low limit is <= 0 C; absolute humidity <= 20 g/m3 at the high temperature (R76-1 A.5.3.1)", "profile": "5 C test when the low limit is below 10 C (gazette: 'or'; the engine requires both); absolute humidity <= 20 g/m3 at every temperature", "clause": "Hdg A Pt II 9(13)(i)" }
+    ],
+
+    "scale_interval_form": { "clause": "Hdg A Pt II 3(2)(i)" },
+
+    "accuracy_classes": [
+      {
+        "id": "I", "name": "Special accuracy", "display": "I", "clause": "Hdg A Pt II 3(3)(i) Table 17",
+        "bands": [ { "e_min_g": 0.001, "e_max_g": null, "n_min": 50000, "n_max": null, "min_capacity_e": 100 } ],
+        "notes": ["For e < 1 mg in class I, e shall be taken as 1 mg for verification/inspection (Table 17 note)", "n may be < 50 000 when d < 0.1 mg (3(5)(v))"],
+        "e_floor_g": 0.001
+      },
+      {
+        "id": "II", "name": "High accuracy", "display": "II", "clause": "Hdg A Pt II 3(3)(i) Table 17",
+        "bands": [
+          { "e_min_g": 0.001, "e_max_g": 0.05, "n_min": 100, "n_max": 100000, "min_capacity_e": 20 },
+          { "e_min_g": 0.1, "e_max_g": null, "n_min": 5000, "n_max": 100000, "min_capacity_e": 50 }
+        ]
+      },
+      {
+        "id": "III", "name": "Medium accuracy", "display": "III", "clause": "Hdg A Pt II 3(3)(i) Table 17",
+        "bands": [
+          { "e_min_g": 0.1, "e_max_g": 2, "n_min": 100, "n_max": 10000, "min_capacity_e": 20 },
+          { "e_min_g": 5, "e_max_g": null, "n_min": 500, "n_max": 10000, "min_capacity_e": 20 }
+        ]
+      },
+      {
+        "id": "IIII", "name": "Ordinary accuracy", "display": "IV", "clause": "Hdg A Pt II 3(3)(i) Table 17",
+        "bands": [ { "e_min_g": 5, "e_max_g": null, "n_min": 100, "n_max": 1000, "min_capacity_e": 10 } ]
+      }
+    ],
+    "grading_min_capacity_e": { "value": null, "clause": "Not provided in Hdg A (OIML-only)" },
+
+    "mpe_initial_verification": { "clause": "Hdg A Pt II 3(6)(i) Table 20", "label": "verification / re-verification" },
+    "mpe_in_service_multiplier": { "value": 2, "clause": "Hdg A Pt II 3(6)(ii)", "label": "inspection" },
+    "multi_interval_boundary": { "clause": "Hdg A Pt II 3(4)(iii) Table 18", "e_select_clause": "Hdg A Pt II 3(4) and 9(1)" },
+
+    "general_limits": {
+      "rounding_error_elimination":   { "clause": "Hdg A Pt II 9(1)" },
+      "changeover_step_e":            { "clause": "Hdg A Pt II 9(1)" },
+      "zero_setting_accuracy_e":      { "value": 0.25, "clause": "Hdg A Pt II 4 (zero-setting devices: Accuracy)", "auxiliary_device_limit_d": 0.5 },
+      "tare_setting_accuracy_e":      { "clause": "Hdg A Pt II 4 (tare devices: Accuracy)" },
+      "zero_setting_range_pct_max":   { "clause": "Hdg A Pt II 4 (zero-setting devices: Maximum effect)" },
+      "initial_zero_setting_pct_max": { "clause": "Hdg A Pt II 4 (zero-setting devices: Maximum effect)" },
+      "zero_setting_range_rules":     { "clause": "Hdg A Pt II 4 (zero-setting devices: Maximum effect)", "class_IIII_exempt_unless_commercial": false, "initial_wider_allowed_if_tested": false, "wider_clause": "Not provided in Hdg A (OIML-only)" },
+      "zero_return_e":                { "clause": "Hdg A Pt II 3(9)(iv)(b)" },
+      "creep":                        { "clause": "Hdg A Pt II 3(9)(iv)(a)" },
+      "temperature_no_load":          { "clause": "Hdg A Pt II 3(9)(ii)(c)" },
+      "temperature_range_default_C":  { "clause": "Hdg A Pt II 3(9)(ii)(a)" },
+      "temperature_range_min_span_C": { "clause": "Hdg A Pt II 3(9)(ii)(b)" },
+      "static_temperatures": {
+        "clause": "Hdg A Pt II 3(9)(ii) / 9(13)(i)",
+        "extra_if_low": { "op": "lt", "C": 10 },
+        "abs_humidity_applies": "all",
+        "abs_humidity_note": "Hdg A 9(13)(i): absolute humidity <= 20 g/m3 unless the operating manual gives different specifications",
+        "note": "TODO-VERIFY: gazette reads 'at the specified low temperature or at a temperature of 5 C if the specified low temperature is below 10 C' (OIML R76-1 A.5.3.1: and at 5 C if the low temperature is <= 0 C). Engine requires both the low temperature and 5 C (the stricter reading); lab to confirm with RRSL."
+      },
+      "tilting": {
+        "clause": "Hdg A Pt II 3(9)(i)",
+        "classes": ["II", "III", "IIII"],
+        "no_load_limit_e": 2,
+        "no_load_limit_excluded_classes": ["II"],
+        "no_load_excluded_unless_direct_sale": false,
+        "loaded_limit": "mpe",
+        "default_limit_per_mille": 2,
+        "limit_rule": "greater of 2/1000 and the limiting value marked on / indicated by the level indicator",
+        "no_level_indicator_limit_per_mille": 50,
+        "class_I_limit_per_mille": 2
+      },
+      "power_supply": {
+        "clause": "Hdg A Pt II 3(9)(iii)",
+        "mains_ac": { "lower_factor": 0.85, "upper_factor": 1.10, "frequency_lower_factor": 0.98, "frequency_upper_factor": 1.02 }
+      },
+      "significant_fault_e":  { "clause": "Hdg A Pt II 5(3)(iv)" },
+      "stable_equilibrium_e": { "clause": "Hdg A Pt II 4 (stable equilibrium) / R76-1 A.4.12" },
+      "span_stability":       { "clause": "Hdg A Pt II 5(3)(iii) / Annexure A para 4" },
+      "damp_heat":            { "clause": "Hdg A Pt II 5(3)(ii) / Annexure A 2(2)" },
+      "warm_up":              { "clause": "Hdg A Pt II 5(3)(v) / 9(12)" },
+      "discrimination": {
+        "clause": "Hdg A Pt II 3(8) / 9(7)",
+        "digital":  { "extra_load_d": 1.4, "applies_if_d_g_gte": null, "clause": "Hdg A Pt II 3(8)(ii)(b)" },
+        "analog":   { "extra_load_mpe": 1.0, "min_displacement_fraction": 0.7, "clause": "Hdg A Pt II 3(8)(ii)(a)" },
+        "non_self": { "extra_load_mpe": 1.0, "clause": "Hdg A Pt II 3(8)(i) read with 6(1)" },
+        "min_extra_load_g": null,
+        "test_loads": "Min, 1/2 Max and Max (9(7))"
+      },
+      "sensitivity_mm":  { "clause": "Hdg A Pt II 6(1)" },
+      "repeatability":   { "clause": "Hdg A Pt II 3(7)(i) / 9(8)" },
+      "eccentricity":    { "clause": "Hdg A Pt II 3(7)(ii) / 9(6)" },
+      "multiple_indicating_devices": { "clause": "Hdg A Pt II 3(7)(iii)" },
+      "test_weights":    { "clause": "Hdg A Pt II 9(2)(i)" },
+      "substitution": {
+        "clause": "Hdg A Pt II 9(2)(ii) as substituted by G.S.R. 568(E) dt. 03-07-2026",
+        "standard_weights_min_fraction_of_max": 0.5,
+        "reductions": [
+          { "repeatability_error_lte_e": 0.3, "fraction_of_max": 0.3333333333333333 },
+          { "repeatability_error_lte_e": 0.2, "fraction_of_max": 0.2 }
+        ],
+        "repeatability_placements": 3
+      },
+      "weighing_test_min_loads": { "verification": 5, "inspection": 3, "initial": 10, "other": 5, "clause": "Hdg A Pt II 9(3); type evaluation per R76-1 A.4.4.1" },
+      "endurance":       { "clause": "Hdg A Pt II 3(9)(iv)(c) / 9(15)" },
+      "time_tests_classes": {
+        "classes": ["I", "II", "III"],
+        "clause": "Hdg A Pt II 3(9)(iv)",
+        "note": "TODO-VERIFY: gazette text reads 'class I, II or III' (OIML R76-1 3.9.4 reads II, III, IIII). Engine follows the gazette; lab to confirm with RRSL."
+      }
+    },
+
+    "verdict_policy": { "clause": "Lab decision rule (ILAC-G8); Hdg A itself is a simple acceptance rule" }
+  },
+
+  "test_overrides": {
+    "T01":  { "clause": "Hdg A Pt II 3(6) / 9(3)" },
+    "T02":  { "clause": "Hdg A Pt II 3(9)(ii)(c)" },
+    "T03":  { "clause": "Hdg A Pt II 3(7)(ii) / 9(6)" },
+    "T04":  { "clause": "Hdg A Pt II 3(8) / 9(7)",
+              "variants": {
+                "digital": "extra load 1.4 d must change indication by d (no d >= 5 mg exemption)",
+                "analog": "extra load |mpe| gives displacement >= 0.7 x extra load",
+                "non_self": "extra load 1.0 |mpe| gives movement as per 6(1)"
+              } },
+    "T05":  { "clause": "Hdg A Pt II 6(1)" },
+    "T06":  { "clause": "Hdg A Pt II 3(7)(i) / 9(8)" },
+    "T07a": { "clause": "Hdg A Pt II 3(9)(iv)(b)", "applies_if": { "classes": ["I", "II", "III"] } },
+    "T07b": { "clause": "Hdg A Pt II 3(9)(iv)(a) / 9(9)", "applies_if": { "classes": ["I", "II", "III"] } },
+    "T08":  { "clause": "Hdg A Pt II 4 (stable equilibrium)" },
+    "T09":  { "clause": "Hdg A Pt II 3(9)(i)", "pass": "no-load |dI| <= 2 e (not class II); loaded |Ec| <= mpe; tilt = max(2/1000, level-indicator limit) or 5% if no level indicator" },
+    "T10":  { "clause": "Hdg A Pt II 3(6)(iii)(b) / 9(5)" },
+    "T11":  { "clause": "Hdg A Pt II 5(3)(v) / 9(12)" },
+    "T12":  { "clause": "Hdg A Pt II 3(9)(iii)", "pass": "abs(Ec) <= mpe at -15% / +10% voltage and -2% / +2% frequency" },
+    "T13":  { "clause": "Hdg A Pt II 5(3)(iv) / Annexure A" },
+    "T14":  { "clause": "Hdg A Pt II 5(3)(ii) / Annexure A 2(2)" },
+    "T15":  { "clause": "Hdg A Pt II 5(3)(iii) / Annexure A 4" },
+    "T16":  { "clause": "Hdg A Pt II 3(9)(iv)(c) / 9(15)" },
+    "T18":  { "clause": "Hdg A Pt II 4 (zero-setting devices: Maximum effect, Accuracy)",
+              "pass": "initial zero-setting range <= 20 % Max; zero-setting + zero-tracking <= 4 % Max (all classes); |E0| after zero-setting <= 0.25 e, or 0.5 d with an auxiliary indicating device" },
+    "T19":  { "clause": "Hdg A Pt II 3(9)(ii) / 9(13)(i)",
+              "pass": "abs(Ec) <= mpe at the reference, high, low (and 5 C if low < 10 C) and reference temperatures; absolute humidity <= 20 g/m3" },
+    "T17":  { "clause": "Hdg A Pt II 4 / 7 (markings, sealing); software items per OIML R 76-1 5.5 / Annex G (no software clause in Hdg A)" }
+  }
+}

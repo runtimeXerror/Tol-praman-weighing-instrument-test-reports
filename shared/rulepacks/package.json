@@ -1,0 +1,22 @@
+{
+  "name": "@tolpraman/rulepacks",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./packs/*": "./packs/*",
+    "./schema": "./rulepack.schema.json",
+    "./validate": "./src/validate.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@noble/hashes": "^1.6.1",
+    "ajv": "^8.17.1"
+  }
+}

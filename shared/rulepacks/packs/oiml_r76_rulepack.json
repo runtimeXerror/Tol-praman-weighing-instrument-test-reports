@@ -1,0 +1,866 @@
+{
+  "$schema": "../rulepack.schema.json",
+  "id": "OIML_R76",
+  "profile": "OIML",
+  "version": "2006.1.2",
+  "title": "OIML R 76-1:2006 Non-automatic weighing instruments - Metrological and technical requirements",
+  "source": {
+    "documents": [
+      {
+        "ref": "OIML R 76-1:2006 (E)",
+        "file": "docs/standards/oiml/OIML_R76-1_2006.pdf",
+        "url": "https://www.oiml.org/en/files/pdf_r/r076-1-e06.pdf"
+      },
+      {
+        "ref": "OIML R 76-2:2007 (E)",
+        "file": "docs/standards/oiml/OIML_R76-2_2007.pdf",
+        "url": "https://www.oiml.org/en/files/pdf_r/r076-2-e07.pdf"
+      }
+    ],
+    "clause_prefix": "R76-1"
+  },
+  "units": {
+    "mass": "g",
+    "temperature": "C",
+    "tilt": "per_mille"
+  },
+  "scale_interval_form": {
+    "clause": "R76-1 4.2.2.1",
+    "mantissas": [
+      1,
+      2,
+      5
+    ],
+    "note": "e and d shall be of the form 1, 2 or 5 x 10^k"
+  },
+  "accuracy_classes": [
+    {
+      "id": "I",
+      "name": "Special accuracy",
+      "display": "I",
+      "clause": "R76-1 3.2 Table 3",
+      "bands": [
+        {
+          "e_min_g": 0.001,
+          "e_max_g": null,
+          "n_min": 50000,
+          "n_max": null,
+          "min_capacity_e": 100
+        }
+      ],
+      "notes": [
+        "e < 1 mg is not normally feasible to test (Table 3 footnote *)",
+        "n may be < 50 000 when d < 0.1 mg (3.4.4)"
+      ]
+    },
+    {
+      "id": "II",
+      "name": "High accuracy",
+      "display": "II",
+      "clause": "R76-1 3.2 Table 3",
+      "bands": [
+        {
+          "e_min_g": 0.001,
+          "e_max_g": 0.05,
+          "n_min": 100,
+          "n_max": 100000,
+          "min_capacity_e": 20
+        },
+        {
+          "e_min_g": 0.1,
+          "e_max_g": null,
+          "n_min": 5000,
+          "n_max": 100000,
+          "min_capacity_e": 50
+        }
+      ]
+    },
+    {
+      "id": "III",
+      "name": "Medium accuracy",
+      "display": "III",
+      "clause": "R76-1 3.2 Table 3",
+      "bands": [
+        {
+          "e_min_g": 0.1,
+          "e_max_g": 2,
+          "n_min": 100,
+          "n_max": 10000,
+          "min_capacity_e": 20
+        },
+        {
+          "e_min_g": 5,
+          "e_max_g": null,
+          "n_min": 500,
+          "n_max": 10000,
+          "min_capacity_e": 20
+        }
+      ]
+    },
+    {
+      "id": "IIII",
+      "name": "Ordinary accuracy",
+      "display": "IIII",
+      "clause": "R76-1 3.2 Table 3",
+      "bands": [
+        {
+          "e_min_g": 5,
+          "e_max_g": null,
+          "n_min": 100,
+          "n_max": 1000,
+          "min_capacity_e": 10
+        }
+      ]
+    }
+  ],
+  "class_aliases": {
+    "IV": "IIII",
+    "4": "IIII",
+    "1": "I",
+    "2": "II",
+    "3": "III"
+  },
+  "grading_min_capacity_e": {
+    "value": 5,
+    "clause": "R76-1 3.2 (note below Table 3)",
+    "note": "Min reduced to 5 e for grading instruments (postal, waste)"
+  },
+  "mpe_initial_verification": {
+    "clause": "R76-1 3.5.1 Table 6",
+    "unit": "e",
+    "bands": {
+      "I": [
+        {
+          "m_max_e": 50000,
+          "mpe_e": 0.5
+        },
+        {
+          "m_max_e": 200000,
+          "mpe_e": 1.0
+        },
+        {
+          "m_max_e": null,
+          "mpe_e": 1.5
+        }
+      ],
+      "II": [
+        {
+          "m_max_e": 5000,
+          "mpe_e": 0.5
+        },
+        {
+          "m_max_e": 20000,
+          "mpe_e": 1.0
+        },
+        {
+          "m_max_e": 100000,
+          "mpe_e": 1.5
+        }
+      ],
+      "III": [
+        {
+          "m_max_e": 500,
+          "mpe_e": 0.5
+        },
+        {
+          "m_max_e": 2000,
+          "mpe_e": 1.0
+        },
+        {
+          "m_max_e": 10000,
+          "mpe_e": 1.5
+        }
+      ],
+      "IIII": [
+        {
+          "m_max_e": 50,
+          "mpe_e": 0.5
+        },
+        {
+          "m_max_e": 200,
+          "mpe_e": 1.0
+        },
+        {
+          "m_max_e": 1000,
+          "mpe_e": 1.5
+        }
+      ]
+    },
+    "boundary_rule": "upper bound inclusive: 0 <= m <= m_max_e[0]; m_max_e[i-1] < m <= m_max_e[i]"
+  },
+  "mpe_in_service_multiplier": {
+    "value": 2,
+    "clause": "R76-1 3.5.2"
+  },
+  "multi_interval_boundary": {
+    "clause": "R76-1 3.3.3 Table 4",
+    "rule": "Max_i / e_(i+1) >= min_ratio for every partial range except the last",
+    "min_ratio": {
+      "I": 50000,
+      "II": 5000,
+      "III": 500,
+      "IIII": 50
+    },
+    "e_select_clause": "R76-1 3.3 (example) and A.4.4.3 note: e_i of the partial range containing the load; near zero e = e1"
+  },
+  "general_limits": {
+    "rounding_error_elimination": {
+      "d_over_e_gt": 0.2,
+      "clause": "R76-1 3.5.3.2"
+    },
+    "changeover_step_e": {
+      "value": 0.1,
+      "clause": "R76-1 A.4.4.3"
+    },
+    "zero_setting_accuracy_e": {
+      "value": 0.25,
+      "clause": "R76-1 4.5.2",
+      "auxiliary_device_limit_d": null
+    },
+    "tare_setting_accuracy_e": {
+      "value": 0.25,
+      "clause": "R76-1 4.6.3"
+    },
+    "zero_setting_range_pct_max": {
+      "value": 4,
+      "clause": "R76-1 4.5.1"
+    },
+    "initial_zero_setting_pct_max": {
+      "value": 20,
+      "clause": "R76-1 4.5.1"
+    },
+    "zero_setting_range_rules": {
+      "clause": "R76-1 4.5.1 / A.4.2.1",
+      "class_IIII_exempt_unless_commercial": true,
+      "initial_wider_allowed_if_tested": true,
+      "wider_clause": "R76-1 4.5.1 / A.4.4.2 (supplementary weighing test at the upper limit of the initial zero-setting range)"
+    },
+    "zero_return_e": {
+      "value": 0.5,
+      "clause": "R76-1 3.9.4.2"
+    },
+    "creep": {
+      "clause": "R76-1 3.9.4.1",
+      "short_total_e": 0.5,
+      "short_15_30_e": 0.2,
+      "short_minutes": 30,
+      "long_hours": 4,
+      "long_limit": "mpe",
+      "max_temperature_variation_C": 2
+    },
+    "temperature_no_load": {
+      "clause": "R76-1 3.9.2.3",
+      "limit_e": 1,
+      "per_delta_C": {
+        "I": 1,
+        "II": 5,
+        "III": 5,
+        "IIII": 5
+      },
+      "use_smallest_e": true
+    },
+    "temperature_range_default_C": {
+      "low": -10,
+      "high": 40,
+      "clause": "R76-1 3.9.2.1"
+    },
+    "temperature_range_min_span_C": {
+      "I": 5,
+      "II": 15,
+      "III": 30,
+      "IIII": 30,
+      "clause": "R76-1 3.9.2.2"
+    },
+    "static_temperatures": {
+      "clause": "R76-1 3.9.2.1 / 3.9.2.2 / A.5.3.1",
+      "ref_temperature_C": 20,
+      "class_I_ref": "mean_of_limits",
+      "extra_temperature_C": 5,
+      "extra_if_low": {
+        "op": "lte",
+        "C": 0
+      },
+      "match_tolerance_C": 2,
+      "match_tolerance_note": "Laboratory chamber tolerance used to recognise a test temperature (IEC 60068-2-1 / -2: +/- 2 K)",
+      "max_rate_C_per_min": 1,
+      "abs_humidity_max_g_m3": 20,
+      "abs_humidity_applies": "high",
+      "zero_tracking": "not in operation during the temperature test (A.4.4.1)"
+    },
+    "tilting": {
+      "clause": "R76-1 3.9.1.1 / R76-2 9",
+      "classes": [
+        "II",
+        "III",
+        "IIII"
+      ],
+      "no_load_limit_e": 2,
+      "no_load_limit_excluded_classes": [
+        "II"
+      ],
+      "loaded_limit": "mpe",
+      "default_limit_per_mille": 50,
+      "no_load_excluded_unless_direct_sale": true
+    },
+    "power_supply": {
+      "clause": "R76-1 3.9.3 / A.5.4",
+      "mains_ac": {
+        "lower_factor": 0.85,
+        "upper_factor": 1.1
+      },
+      "external_dc": {
+        "lower": "min_operating_voltage",
+        "upper_factor": 1.2
+      },
+      "battery": {
+        "lower": "min_operating_voltage",
+        "upper_factor": 1.0
+      },
+      "vehicle_12v": {
+        "lower": "min_operating_voltage",
+        "upper_V": 16
+      },
+      "vehicle_24v": {
+        "lower": "min_operating_voltage",
+        "upper_V": 32
+      },
+      "test_loads": "10 e and a load between 1/2 Max and Max"
+    },
+    "significant_fault_e": {
+      "value": 1,
+      "clause": "R76-1 T.5.5.6 / 5.3.4"
+    },
+    "stable_equilibrium_e": {
+      "value": 1,
+      "clause": "R76-1 4.4.2 / A.4.12",
+      "repeats": 5,
+      "observe_seconds": 5,
+      "zero_tare_limit_e": 0.25
+    },
+    "span_stability": {
+      "clause": "R76-1 5.3.3 / B.4",
+      "max_diff": "max(0.5 e, 0.5 |mpe|)",
+      "min_measurements": 8,
+      "initial_repeats": 5,
+      "initial_range_limit_e": 0.1,
+      "excluded_classes": [
+        "I"
+      ]
+    },
+    "damp_heat": {
+      "clause": "R76-1 5.3.2 / B.2",
+      "rh_high_pct": 85,
+      "rh_ref_pct": 50,
+      "ref_temperature_C": 20,
+      "min_test_loads": 5,
+      "excluded": {
+        "classes": [
+          "I"
+        ],
+        "class_II_e_below_g": 1
+      }
+    },
+    "warm_up": {
+      "clause": "R76-1 5.3.5 / A.5.2 / R76-2 10",
+      "minutes": [
+        0,
+        5,
+        15,
+        30
+      ],
+      "disconnect_hours": 8,
+      "limit": "|EL - E0| <= |mpe|"
+    },
+    "discrimination": {
+      "clause": "R76-1 3.8 / A.4.8",
+      "digital": {
+        "extra_load_d": 1.4,
+        "applies_if_d_g_gte": 0.005,
+        "clause": "R76-1 3.8.2.2"
+      },
+      "analog": {
+        "extra_load_mpe": 1.0,
+        "min_displacement_fraction": 0.7,
+        "clause": "R76-1 3.8.2.1"
+      },
+      "non_self": {
+        "extra_load_mpe": 0.4,
+        "clause": "R76-1 3.8.1"
+      },
+      "min_extra_load_g": 0.001,
+      "test_loads": "three loads, e.g. Min, 1/2 Max and Max"
+    },
+    "sensitivity_mm": {
+      "clause": "R76-1 6.1",
+      "rules": [
+        {
+          "classes": [
+            "I",
+            "II"
+          ],
+          "min_displacement_mm": 1
+        },
+        {
+          "classes": [
+            "III",
+            "IIII"
+          ],
+          "max_g_lte": 30000,
+          "min_displacement_mm": 2
+        },
+        {
+          "classes": [
+            "III",
+            "IIII"
+          ],
+          "max_g_gt": 30000,
+          "min_displacement_mm": 5
+        }
+      ],
+      "extra_load": "|mpe| at applied load, not less than 1 mg"
+    },
+    "repeatability": {
+      "clause": "R76-1 3.6.1 / A.4.10",
+      "limit": "|mpe|",
+      "loads_fraction_of_max": [
+        0.5,
+        1.0
+      ],
+      "series_size": {
+        "max_below_g": 1000000,
+        "small": 10,
+        "large_min": 3
+      }
+    },
+    "eccentricity": {
+      "clause": "R76-1 3.6.2",
+      "load_fraction": {
+        "le_4_supports": 0.3333333333333333,
+        "special_receptor": 0.1,
+        "rolling_max": 0.8
+      },
+      "load_fraction_n_supports": "1/(n-1) for n > 4 supports (3.6.2.2)",
+      "limit": "mpe"
+    },
+    "multiple_indicating_devices": {
+      "clause": "R76-1 3.6.3",
+      "limit": "|mpe|",
+      "digital_print_diff": 0
+    },
+    "test_weights": {
+      "clause": "R76-1 3.7.1",
+      "error_fraction_of_mpe": 0.3333333333333333
+    },
+    "weighing_test_min_loads": {
+      "initial": 10,
+      "other": 5,
+      "clause": "R76-1 A.4.4.1"
+    },
+    "endurance": {
+      "clause": "R76-1 3.9.4.3 / A.6",
+      "classes": [
+        "II",
+        "III",
+        "IIII"
+      ],
+      "max_g_lte": 100000,
+      "cycles": 100000,
+      "load_fraction": 0.5,
+      "limit": "|mpe|"
+    },
+    "time_tests_classes": {
+      "classes": [
+        "II",
+        "III",
+        "IIII"
+      ],
+      "clause": "R76-1 3.9.4 / A.4.11"
+    },
+    "uncertainty": {
+      "clause": "Lab method after EURAMET cg-18 / OIML G 19 (not part of R 76)",
+      "coverage_k": 2,
+      "resolution_step_e": 0.1,
+      "resolution_divisor": 1.7320508075688772,
+      "weights_combination": "linear",
+      "note": "u_res = 0.1 e / sqrt(3) (changeover method, conservative); u_w = sum(U_i/2) (correlated, conservative); u_rep = s from T06"
+    }
+  },
+  "error_formula": {
+    "clause": "R76-1 A.4.4.3",
+    "indication_prior_to_rounding": "P = I + 0.5 e - dL",
+    "error": "E = P - L = I + 0.5 e - dL - L",
+    "corrected_error": "Ec = E - E0",
+    "no_changeover_when": "d <= 0.2 e with a device showing scale interval <= e/5 (A.4.1.6): E = I - L",
+    "multi_interval": "0.5 e uses e_i or e_(i+1) of the partial range in which I + e appears"
+  },
+  "tests": [
+    {
+      "id": "T01",
+      "name": "Weighing performance (increasing and decreasing loads)",
+      "clause": "R76-1 3.5 / A.4.4",
+      "report_section": "R76-2 4.4",
+      "inputs": [
+        "L",
+        "I",
+        "dL",
+        "direction"
+      ],
+      "pass": "abs(Ec) <= mpe for every row",
+      "applies_if": {}
+    },
+    {
+      "id": "T02",
+      "name": "Temperature effect on no-load indication",
+      "clause": "R76-1 3.9.2.3 / A.5.3.2",
+      "report_section": "R76-2 5.3.2",
+      "inputs": [
+        "T",
+        "I0",
+        "dL0"
+      ],
+      "pass": "|dE0| <= 1 e per 1 C (class I) or per 5 C (others)",
+      "applies_if": {}
+    },
+    {
+      "id": "T03",
+      "name": "Eccentricity",
+      "clause": "R76-1 3.6.2 / A.4.7",
+      "report_section": "R76-2 4.7",
+      "inputs": [
+        "position",
+        "L",
+        "I",
+        "dL"
+      ],
+      "pass": "abs(Ec) <= mpe at every position",
+      "applies_if": {}
+    },
+    {
+      "id": "T04",
+      "name": "Discrimination",
+      "clause": "R76-1 3.8 / A.4.8",
+      "report_section": "R76-2 4.8",
+      "inputs": [
+        "L",
+        "I1",
+        "I2"
+      ],
+      "pass": "indication changes as specified",
+      "applies_if": {},
+      "variants": {
+        "digital": "extra load 1.4 d must change indication by d (only d >= 5 mg)",
+        "analog": "extra load |mpe| gives displacement >= 0.7 x extra load",
+        "non_self": "extra load 0.4 |mpe| gives visible displacement"
+      }
+    },
+    {
+      "id": "T05",
+      "name": "Sensitivity (non-self-indicating)",
+      "clause": "R76-1 6.1 / A.4.9",
+      "report_section": "R76-2 4.9",
+      "inputs": [
+        "L",
+        "displacement_mm"
+      ],
+      "pass": "displacement >= 1/2/5 mm",
+      "applies_if": {
+        "indication": [
+          "non_self"
+        ]
+      }
+    },
+    {
+      "id": "T06",
+      "name": "Repeatability",
+      "clause": "R76-1 3.6.1 / A.4.10",
+      "report_section": "R76-2 4.10",
+      "inputs": [
+        "L",
+        "I",
+        "dL",
+        "I0"
+      ],
+      "pass": "max-min <= |mpe| and each |E| <= mpe",
+      "applies_if": {}
+    },
+    {
+      "id": "T07a",
+      "name": "Return to zero",
+      "clause": "R76-1 3.9.4.2 / A.4.11.2",
+      "report_section": "R76-2 4.11.2",
+      "inputs": [
+        "E0_before",
+        "E0_after"
+      ],
+      "pass": "|dE0| <= 0.5 e1",
+      "applies_if": {
+        "classes": [
+          "II",
+          "III",
+          "IIII"
+        ]
+      }
+    },
+    {
+      "id": "T07b",
+      "name": "Creep",
+      "clause": "R76-1 3.9.4.1 / A.4.11.1",
+      "report_section": "R76-2 4.11.1",
+      "inputs": [
+        "t_min",
+        "I",
+        "dL"
+      ],
+      "pass": "30-min rule (0.5 e and 0.2 e) or 4-h rule (|mpe|)",
+      "applies_if": {
+        "classes": [
+          "II",
+          "III",
+          "IIII"
+        ]
+      }
+    },
+    {
+      "id": "T08",
+      "name": "Stability of equilibrium",
+      "clause": "R76-1 4.4.2 / A.4.12",
+      "report_section": "R76-2 4.12",
+      "inputs": [
+        "printed",
+        "indicated_values"
+      ],
+      "pass": "printed value within 1 e of readings over 5 s (two adjacent values); zero/tare E0 <= 0.25 e (5 repeats)",
+      "applies_if": {
+        "electronic": true
+      }
+    },
+    {
+      "id": "T09",
+      "name": "Tilting",
+      "clause": "R76-1 3.9.1 / A.5.1",
+      "report_section": "R76-2 5.1",
+      "inputs": [
+        "direction",
+        "L",
+        "I",
+        "dL"
+      ],
+      "pass": "no-load |dI| <= 2 e (class II only if direct sale); loaded |Ec| <= mpe",
+      "applies_if": {
+        "classes": [
+          "II",
+          "III",
+          "IIII"
+        ],
+        "liable_to_tilt": true
+      }
+    },
+    {
+      "id": "T10",
+      "name": "Tare",
+      "clause": "R76-1 3.5.3.3 / 4.6.3 / A.4.6",
+      "report_section": "R76-2 4.6",
+      "inputs": [
+        "tare",
+        "L_net",
+        "I",
+        "dL"
+      ],
+      "pass": "abs(Ec) <= mpe on net load; tare setting within 0.25 e",
+      "applies_if": {
+        "has_tare": true
+      }
+    },
+    {
+      "id": "T11",
+      "name": "Warm-up time",
+      "clause": "R76-1 5.3.5 / A.5.2",
+      "report_section": "R76-2 5.2",
+      "inputs": [
+        "t_min",
+        "E0",
+        "L",
+        "I",
+        "dL"
+      ],
+      "pass": "at 0/5/15/30 min: |EL - E0| <= |mpe|",
+      "applies_if": {
+        "electronic": true
+      }
+    },
+    {
+      "id": "T12",
+      "name": "Power supply variations",
+      "clause": "R76-1 3.9.3 / A.5.4",
+      "report_section": "R76-2 5.4",
+      "inputs": [
+        "U",
+        "L",
+        "I",
+        "dL"
+      ],
+      "pass": "abs(Ec) <= mpe at lower and upper voltage",
+      "applies_if": {
+        "electronic": true
+      }
+    },
+    {
+      "id": "T13",
+      "name": "Disturbances (EMC)",
+      "clause": "R76-1 5.3.4 / B.3",
+      "report_section": "R76-2 B.3",
+      "inputs": [
+        "disturbance",
+        "L",
+        "I_without",
+        "I_with",
+        "fault_detected"
+      ],
+      "pass": "|I_with - I_without| <= e or significant fault detected",
+      "applies_if": {
+        "electronic": true
+      }
+    },
+    {
+      "id": "T14",
+      "name": "Damp heat, steady state",
+      "clause": "R76-1 5.3.2 / B.2",
+      "report_section": "R76-2 B.2",
+      "inputs": [
+        "phase",
+        "L",
+        "I",
+        "dL"
+      ],
+      "pass": "abs(Ec) <= mpe in all 3 phases",
+      "applies_if": {
+        "electronic": true,
+        "not": {
+          "classes": [
+            "I"
+          ],
+          "class_II_e_below_g": 1
+        }
+      }
+    },
+    {
+      "id": "T15",
+      "name": "Span stability",
+      "clause": "R76-1 5.3.3 / B.4",
+      "report_section": "R76-2 B.4",
+      "inputs": [
+        "date",
+        "L",
+        "I",
+        "dL",
+        "E0"
+      ],
+      "pass": "|Ec| <= mpe and max diff <= max(0.5 e, 0.5 |mpe|)",
+      "applies_if": {
+        "electronic": true,
+        "classes": [
+          "II",
+          "III",
+          "IIII"
+        ]
+      }
+    },
+    {
+      "id": "T16",
+      "name": "Endurance",
+      "clause": "R76-1 3.9.4.3 / A.6",
+      "report_section": "R76-2 A.6",
+      "inputs": [
+        "before_rows",
+        "after_rows"
+      ],
+      "pass": "durability error |E_after - E_before| <= |mpe|",
+      "applies_if": {
+        "classes": [
+          "II",
+          "III",
+          "IIII"
+        ],
+        "max_g_lte": 100000
+      }
+    },
+    {
+      "id": "T18",
+      "name": "Zero-setting: range and accuracy",
+      "clause": "R76-1 4.5.1 / 4.5.2 / A.4.2",
+      "report_section": "R76-2 17 (A.4.2.1, A.4.2.3)",
+      "inputs": [
+        "initial_pos_g",
+        "initial_neg_g",
+        "overall_g",
+        "mode",
+        "L",
+        "I",
+        "dL"
+      ],
+      "pass": "initial zero-setting range <= 20 % Max; zero-setting + zero-tracking <= 4 % Max; |E0| after zero-setting <= 0.25 e",
+      "applies_if": {}
+    },
+    {
+      "id": "T19",
+      "name": "Static temperatures (weighing test at each temperature)",
+      "clause": "R76-1 3.9.2.1 / 3.9.2.2 / A.5.3.1",
+      "report_section": "R76-2 1 (A.4.4, A.5.3.1)",
+      "inputs": [
+        "T_C",
+        "RH_pct",
+        "L",
+        "I",
+        "dL"
+      ],
+      "pass": "abs(Ec) <= mpe at the reference, high, low (and 5 C) and reference temperatures",
+      "applies_if": {}
+    },
+    {
+      "id": "T17",
+      "name": "Examination checklist (markings, sealing, construction)",
+      "clause": "R76-1 7 / 4 / A.1-A.3",
+      "report_section": "R76-2 1-3",
+      "inputs": [
+        "items"
+      ],
+      "pass": "all mandatory items = yes; optional items may be N/A; any 'no' fails",
+      "applies_if": {},
+      "checklist_note": "Software and data-storage items (R76-1 5.5 and Annex G) are mandatory for software-controlled instruments: answer the group that applies and mark the other groups N/A.",
+      "checklist": [
+        {"id": "doc", "group": "General", "label": "Documentation complete and consistent with the instrument", "clause": "R76-1 8.2.1 / A.1", "mandatory": true},
+        {"id": "construction", "group": "General", "label": "Construction conforms to the documentation", "clause": "R76-1 8.2.2 / A.2", "mandatory": true},
+        {"id": "markings", "group": "General", "label": "Descriptive markings: manufacturer, type, Max, Min, e, class, serial no.", "clause": "R76-1 7.1", "mandatory": true},
+        {"id": "class_mark", "group": "General", "label": "Accuracy class marked in the prescribed form (oval)", "clause": "R76-1 3.1.1 / 7.1.1", "mandatory": true},
+        {"id": "sealing", "group": "General", "label": "Provision for sealing / securing of adjustment and components", "clause": "R76-1 4.1.2.4 / 7.2", "mandatory": true},
+        {"id": "display_test", "group": "General", "label": "Display test on switch-on shows all segments", "clause": "R76-1 5.3.1", "mandatory": false},
+        {"id": "max_9e", "group": "General", "label": "No indication above Max + 9 e", "clause": "R76-1 4.2.3", "mandatory": true},
+        {"id": "zero_range", "group": "General", "label": "Zero-setting range <= 4 % Max; initial zero-setting <= 20 % Max", "clause": "R76-1 4.5.1", "mandatory": true},
+        {"id": "level", "group": "General", "label": "Level indicator fitted where the instrument is liable to be tilted", "clause": "R76-1 3.9.1.1", "mandatory": false},
+        {"id": "interfaces", "group": "General", "label": "Interfaces cannot inadmissibly influence metrological functions", "clause": "R76-1 5.3.6", "mandatory": false},
+        {"id": "sw_embedded", "group": "Software: embedded (Annex G.1)", "label": "Manufacturer declares the software is embedded: fixed hardware and software, cannot be modified or uploaded after securing", "clause": "R76-1 5.5.1 / G.1", "mandatory": false},
+        {"id": "sw_securing", "group": "Software: embedded (Annex G.1)", "label": "Securing means are described and provide evidence of an intervention", "clause": "R76-1 5.5.1 / G.1", "mandatory": false},
+        {"id": "sw_id", "group": "Software: embedded (Annex G.1)", "label": "Software identification is clearly assigned to the legally relevant software and functions", "clause": "R76-1 5.5.1 / G.1", "mandatory": false},
+        {"id": "sw_id_shown", "group": "Software: embedded (Annex G.1)", "label": "Software identification is easily provided by the instrument and matches the reference identification", "clause": "R76-1 5.5.1 / G.1", "mandatory": false},
+        {"id": "pc_docs", "group": "Software: PC / loadable (Annex G.2)", "label": "Software documentation supplied with all information needed to examine the legally relevant software", "clause": "R76-1 5.5.2.2 (d) / G.2.1", "mandatory": false},
+        {"id": "pc_protection", "group": "Software: PC / loadable (Annex G.2)", "label": "Legally relevant software protected: closed shell with a declared complete command set, or a checksum / signature over the machine code and the program will not start if the code is falsified", "clause": "R76-1 G.2.2.1 / G.2.2.2", "mandatory": false},
+        {"id": "pc_parameters", "group": "Software: PC / loadable (Annex G.2)", "label": "Device-specific parameters protected (e.g. checksum), with an audit trail", "clause": "R76-1 G.2.2.3", "mandatory": false},
+        {"id": "pc_interface", "group": "Software: PC / loadable (Annex G.2)", "label": "Legally relevant modules separated from associated software by a defined, documented protective software interface", "clause": "R76-1 5.5.2.2 / G.2.3", "mandatory": false},
+        {"id": "pc_id", "group": "Software: PC / loadable (Annex G.2)", "label": "Software identification generated at run time over the legally relevant modules and type-specific parameters, shown on manual command and compared with the reference", "clause": "R76-1 G.2.4", "mandatory": false},
+        {"id": "storage_ok", "group": "Data storage (Annex G.3)", "label": "Data stored and retrieved correctly; storage capacity and protection against data loss described and sufficient", "clause": "R76-1 5.5.3 / G.3.2", "mandatory": false},
+        {"id": "storage_content", "group": "Data storage (Annex G.3)", "label": "Stored data contain everything needed to reconstruct an earlier weighing (gross / net / tare, decimals, units, identification)", "clause": "R76-1 G.3.3", "mandatory": false},
+        {"id": "storage_protect", "group": "Data storage (Annex G.3)", "label": "Stored data protected against accidental or intentional change (parity / checksum as required)", "clause": "R76-1 G.3.4", "mandatory": false},
+        {"id": "storage_auto", "group": "Data storage (Annex G.3)", "label": "Data sets identifiable, stored automatically and displayable / printable on a device under legal control", "clause": "R76-1 G.3.5 - G.3.7", "mandatory": false}
+      ]
+    }
+  ],
+  "verdict_policy": {
+    "default_rule": "simple",
+    "rules": {
+      "simple": "PASS if |Ec| <= mpe else FAIL (U reported for information)",
+      "guarded": "PASS if |Ec| + U <= mpe; CONDITIONAL if |Ec| <= mpe < |Ec| + U; FAIL if |Ec| > mpe"
+    },
+    "aggregate": "test FAIL if any row FAIL; CONDITIONAL if any row CONDITIONAL; else PASS. Case = worst over applicable tests.",
+    "clause": "OIML G 19 / ILAC-G8 decision rules (lab policy, not R 76)"
+  }
+}

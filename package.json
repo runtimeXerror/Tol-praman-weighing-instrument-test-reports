@@ -1,0 +1,32 @@
+{
+  "name": "tolpraman",
+  "private": true,
+  "version": "0.1.0",
+  "description": "TOLPRAMAN: NAWI type-evaluation test reports as per OIML R 76 and LM (General) Rules 2011",
+  "workspaces": [
+    "shared/rulepacks",
+    "shared/engine",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build:shared": "npm run build -w @tolpraman/rulepacks -w @tolpraman/engine",
+    "test": "npm run test -w @tolpraman/rulepacks -w @tolpraman/engine -w @tolpraman/backend -w @tolpraman/frontend",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev:backend": "npm run dev -w @tolpraman/backend",
+    "dev:frontend": "npm run dev -w @tolpraman/frontend",
+    "seed": "npm run seed -w @tolpraman/backend",
+    "build": "npm run build:shared && npm run build -w @tolpraman/backend -w @tolpraman/frontend",
+    "stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop.ps1"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^3.2.4",
+    "tsx": "^4.19.2",
+    "@types/node": "^22.10.0"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}

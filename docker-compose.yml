@@ -1,0 +1,33 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes: [mongo-data:/data/db]
+
+  backend:
+    build: { context: ., dockerfile: backend/Dockerfile }
+    restart: unless-stopped
+    environment:
+      MONGO_URI: mongodb://mongo:27017/tolpraman
+      JWT_SECRET: ${JWT_SECRET:-change-me}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-change-me-too}
+      CORS_ORIGINS: ${PUBLIC_WEB_URL:-http://localhost:3000}
+      PUBLIC_WEB_URL: ${PUBLIC_WEB_URL:-http://localhost:3000}
+      STORAGE_DIR: /data/files
+      # The lab's Ed25519 signing key must survive container rebuilds, or earlier reports stop verifying.
+      KEYS_DIR: /data/keys
+    volumes: [files:/data/files, keys:/data/keys]
+    depends_on: [mongo]
+
+  frontend:
+    build: { context: ., dockerfile: frontend/Dockerfile }
+    restart: unless-stopped
+    environment:
+      BACKEND_URL: http://backend:4000
+    ports: ["3000:3000"]
+    depends_on: [backend]
+
+volumes:
+  mongo-data:
+  files:
+  keys:

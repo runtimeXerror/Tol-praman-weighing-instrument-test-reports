@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tolpraman.local/rulepack.schema.json",
+  "title": "TOLPRAMAN rule pack",
+  "description": "A versioned, clause-referenced description of NAWI requirements. Either a base pack (OIML) or an extension pack (extends + overrides).",
+  "type": "object",
+  "required": ["id", "profile", "version", "title", "source"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[A-Z0-9_]+$" },
+    "profile": { "enum": ["OIML", "IN"] },
+    "version": { "type": "string", "minLength": 1 },
+    "title": { "type": "string" },
+    "extends": { "type": "string" },
+    "source": {
+      "type": "object",
+      "required": ["documents"],
+      "properties": {
+        "documents": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["ref"], "properties": { "ref": { "type": "string" } } } },
+        "clause_prefix": { "type": "string" }
+      }
+    },
+    "units": { "type": "object" },
+    "scale_interval_form": { "type": "object" },
+    "accuracy_classes": { "type": "array", "items": { "$ref": "#/definitions/accuracyClass" } },
+    "class_aliases": { "type": "object", "additionalProperties": { "enum": ["I", "II", "III", "IIII"] } },
+    "grading_min_capacity_e": { "type": "object" },
+    "mpe_initial_verification": { "$ref": "#/definitions/mpeTable" },
+    "mpe_in_service_multiplier": { "type": "object", "required": ["clause"], "properties": { "value": { "type": "number", "exclusiveMinimum": 0 }, "clause": { "type": "string" } } },
+    "multi_interval_boundary": { "type": "object" },
+    "general_limits": { "type": "object" },
+    "error_formula": { "type": "object" },
+    "tests": { "type": "array", "items": { "$ref": "#/definitions/test" } },
+    "verdict_policy": { "type": "object" },
+    "differences_from_base": {
+      "type": "array",
+      "items": { "type": "object", "required": ["topic", "base", "profile", "clause"], "properties": { "topic": { "type": "string" }, "base": { "type": "string" }, "profile": { "type": "string" }, "clause": { "type": "string" } }, "additionalProperties": false }
+    },
+    "overrides": { "type": "object" },
+    "test_overrides": { "type": "object", "additionalProperties": { "type": "object" } }
+  },
+  "if": { "required": ["extends"] },
+  "then": { "required": ["overrides"] },
+  "else": { "required": ["accuracy_classes", "class_aliases", "mpe_initial_verification", "mpe_in_service_multiplier", "multi_interval_boundary", "general_limits", "error_formula", "tests", "verdict_policy"] },
+  "definitions": {
+    "nullableNumber": { "type": ["number", "null"] },
+    "accuracyClass": {
+      "type": "object",
+      "required": ["id", "name", "display", "clause", "bands"],
+      "properties": {
+        "id": { "enum": ["I", "II", "III", "IIII"] },
+        "name": { "type": "string" },
+        "display": { "type": "string" },
+        "clause": { "type": "string" },
+        "bands": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["e_min_g", "e_max_g", "n_min", "n_max", "min_capacity_e"],
+            "properties": {
+              "e_min_g": { "type": "number", "exclusiveMinimum": 0 },
+              "e_max_g": { "$ref": "#/definitions/nullableNumber" },
+              "n_min": { "type": "integer", "minimum": 1 },
+              "n_max": { "type": ["integer", "null"] },
+              "min_capacity_e": { "type": "number", "exclusiveMinimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "mpeTable": {
+      "type": "object",
+      "required": ["clause"],
+      "properties": {
+        "clause": { "type": "string" },
+        "bands": {
+          "type": "object",
+          "required": ["I", "II", "III", "IIII"],
+          "additionalProperties": {
+            "type": "array", "minItems": 1,
+            "items": { "type": "object", "required": ["m_max_e", "mpe_e"], "properties": { "m_max_e": { "type": ["number", "null"] }, "mpe_e": { "type": "number", "exclusiveMinimum": 0 } } }
+          }
+        }
+      }
+    },
+    "test": {
+      "type": "object",
+      "required": ["id", "name", "clause", "inputs", "pass", "applies_if"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^T[0-9]{2}[a-z]?$" },
+        "name": { "type": "string" },
+        "clause": { "type": "string" },
+        "inputs": { "type": "array", "items": { "type": "string" } },
+        "pass": { "type": "string" },
+        "applies_if": { "type": "object" },
+        "variants": { "type": "object" },
+        "report_section": { "type": "string" },
+        "checklist_note": { "type": "string" },
+        "checklist": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "clause", "mandatory"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+              "group": { "type": "string" },
+              "label": { "type": "string" },
+              "clause": { "type": "string" },
+              "mandatory": { "type": "boolean" }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  }
+}
