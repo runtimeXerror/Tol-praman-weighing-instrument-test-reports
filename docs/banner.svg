@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" width="1280" height="420" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#034597"/>
+      <stop offset="0.55" stop-color="#0a254c"/>
+      <stop offset="1" stop-color="#061630"/>
+    </linearGradient>
+    <radialGradient id="glowO" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FF904D" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FF904D" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3f76cf" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#3f76cf" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#ffffff" stroke-opacity="0.05"/>
+    </pattern>
+    <linearGradient id="plat" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#e7eefb"/>
+      <stop offset="1" stop-color="#b9cbe8"/>
+    </linearGradient>
+    <linearGradient id="disp" x1="0" x2="1">
+      <stop offset="0" stop-color="#0a254c"/>
+      <stop offset="1" stop-color="#061630"/>
+    </linearGradient>
+    <clipPath id="card"><rect width="1280" height="420" rx="24"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="1280" height="420" fill="url(#bg)"/>
+    <rect width="1280" height="420" fill="url(#grid)"/>
+    <circle cx="1120" cy="40" r="260" fill="url(#glowO)"/>
+    <circle cx="120" cy="420" r="280" fill="url(#glowB)"/>
+
+    <!-- Logo + name -->
+    <g transform="translate(72 64)">
+      <rect width="64" height="64" rx="14" fill="#034597" stroke="#ffffff" stroke-opacity="0.25"/>
+      <path d="M32 12v34" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+      <path d="M14 20h36" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+      <path d="M14 20l-7 14h14z" fill="#FF904D"/>
+      <path d="M50 20l-7 14h14z" fill="#FF904D"/>
+      <path d="M22 50h20" stroke="#FF904D" stroke-width="5" stroke-linecap="round"/>
+      <text x="84" y="30" font-size="30" font-weight="800" fill="#ffffff" letter-spacing="3">TOLPRAMAN</text>
+      <text x="85" y="54" font-size="15" fill="#adc8ef" letter-spacing="1">WEIGHING INSTRUMENT TEST REPORTS</text>
+    </g>
+
+    <!-- Headline -->
+    <text x="72" y="200" font-size="44" font-weight="800" fill="#ffffff">Type-evaluation reports,</text>
+    <text x="72" y="254" font-size="44" font-weight="800" fill="#FF904D">computed to the clause.</text>
+    <text x="72" y="296" font-size="18" fill="#d6e2f5">OIML R 76 · Legal Metrology Rules 2011 · Signed PDF &amp; Word reports</text>
+
+    <!-- Feature chips -->
+    <g font-size="14" font-weight="600" fill="#ffffff">
+      <g transform="translate(72 330)">
+        <rect width="176" height="34" rx="17" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+        <circle cx="20" cy="17" r="4" fill="#FF904D"/>
+        <text x="34" y="22">Live MPE &amp; verdicts</text>
+      </g>
+      <g transform="translate(260 330)">
+        <rect width="168" height="34" rx="17" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+        <circle cx="20" cy="17" r="4" fill="#FF904D"/>
+        <text x="34" y="22">Maker–checker flow</text>
+      </g>
+      <g transform="translate(440 330)">
+        <rect width="190" height="34" rx="17" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.2"/>
+        <circle cx="20" cy="17" r="4" fill="#FF904D"/>
+        <text x="34" y="22">Tamper-evident reports</text>
+      </g>
+    </g>
+
+    <!-- Scale illustration -->
+    <g transform="translate(820 70)">
+      <ellipse cx="200" cy="292" rx="180" ry="16" fill="#000" opacity="0.25"/>
+      <rect x="40" y="200" width="320" height="76" rx="16" fill="#0a254c" stroke="#3f76cf" stroke-opacity="0.35"/>
+      <rect x="22" y="178" width="356" height="32" rx="10" fill="url(#plat)"/>
+      <rect x="130" y="96" width="78" height="82" rx="7" fill="#FF904D"/>
+      <rect x="142" y="82" width="54" height="16" rx="4" fill="#ffab78"/>
+      <rect x="220" y="122" width="62" height="56" rx="7" fill="#f5731f"/>
+      <rect x="229" y="111" width="44" height="13" rx="4" fill="#ffab78"/>
+      <rect x="100" y="218" width="200" height="42" rx="9" fill="url(#disp)" stroke="#3f76cf" stroke-opacity="0.5"/>
+      <circle cx="118" cy="239" r="5" fill="#76ff03"/>
+      <text x="286" y="248" text-anchor="end" font-family="Consolas, 'Courier New', monospace" font-size="24" font-weight="700" fill="#76ff03">10.005 kg</text>
+
+      <!-- Verdict card -->
+      <g transform="translate(250 0)">
+        <rect width="170" height="70" rx="14" fill="#ffffff"/>
+        <text x="16" y="24" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1">OVERALL RESULT</text>
+        <rect x="16" y="34" width="84" height="24" rx="12" fill="#dcfce7"/>
+        <circle cx="31" cy="46" r="6" fill="none" stroke="#16a34a" stroke-width="2"/>
+        <path d="M28 46l2 2 4-4" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
+        <text x="43" y="51" font-size="14" font-weight="700" fill="#15803d">PASS</text>
+        <text x="110" y="51" font-size="12" fill="#64748b">±MPE</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚖️ TOLPRAMAN
+<img src="docs/banner.svg" alt="TOLPRAMAN – Weighing Instrument Test Reports" width="100%">
 
 ### Compliance & Digital Test-Report Platform for Non-Automatic Weighing Instruments (NAWI)
 
@@ -12,6 +12,10 @@ Type evaluation as per **OIML R 76-1 / R 76-2** and the **Legal Metrology (Gener
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?logo=tailwindcss&logoColor=white)
 ![Tests](https://img.shields.io/badge/tests-1%2C187_passing-brightgreen)
+
+<br>
+
+<img src="docs/screenshots/06-approver-dashboard.png" alt="TOLPRAMAN Lab Dashboard" width="100%">
 
 </div>
 
